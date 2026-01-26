@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTA & Co. : Algorithm Simulator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-background"></div>
+    <div class="overlay-gradient"></div>
+
+    <div class="dept-badge" id="dept-badge">
+        🏢 입사 환영식
+    </div>
+
+    <div class="game-container">
+        
+        <div class="story-area">
+            <div id="choice-container" class="choice-box hidden"></div>
+
+            <div class="dialogue-box">
+                <div class="name-tag" id="speaker-name">SYSTEM</div>
+                <div class="text-content" id="story-text">시스템 부팅 중...</div>
+                <div class="click-indicator">▼</div>
+            </div>
+        </div>
+
+        <div class="phone-wrapper">
+            <div class="phone-frame">
+                <div class="notch"></div>
+                <div class="status-bar">
+                    <span id="clock">16:00</span>
+                    <span>5G</span>
+                </div>
+                <div class="app-header">PTA Gram</div>
+                
+                <div class="app-content" id="phone-feed">
+                    <div class="feed-intro">
+                        <p>피드를 새로고침 하세요.</p>
+                    </div>
+                </div>
+
+                <div class="app-nav">
+                    <span>🏠</span><span>🔍</span><span>❤️</span><span>👤</span>
+                </div>
+
+                <div id="notification" class="noti-popup hidden">
+                    <span class="noti-icon">P</span>
+                    <div class="noti-body">
+                        <span class="noti-title">PTA Gram</span>
+                        <span id="noti-text">새 알림</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
