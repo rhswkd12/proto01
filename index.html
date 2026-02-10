@@ -1,63 +1,53 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTA & Co. : Algorithm Simulator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>PTA & Co.</title>
+
+  <!-- 반응형 필수 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- 메인 화면 -->
+  <main id="mainScreen" class="container">
+    <div class="header-content">
+      <h1 class="main-title">POST-TRUTH</h1>
+      <p class="sub-title">ALGORITHM & Co.</p>
+    </div>
+    
+    <button id="startBtn" class="start-card">
+      Start
+    </button>
+  </main>
 
-    <div id="game-background"></div>
-    <div class="overlay-gradient"></div>
-
-    <div class="dept-badge" id="dept-badge">
-        🏢 입사 환영식
+  <!-- 세계관 설명 화면 -->
+  <main id="worldScreen" class="container world-container" style="display: none;">
+    <div class="scroll-wrapper">
+      <div class="scroll-content">
+        <p class="world-text">가까운 미래,</p>
+        <p class="world-text">이 세계에서는 사람들의 생각과 행동이 모두 기록된다.</p>
+        <p class="world-text">알고리즘은 그 기록을 보고 네가 어떤 선택을 할지 미리 안다.</p>
+        <p class="world-text">재미있는 것들은 넘쳐나지만,</p>
+        <p class="world-text">그걸 막을 규칙은 따라오지 못한다.</p>
+        <p class="world-text">사람들은 조종당하고 있다는 것을 모른 채,</p>
+        <p class="world-text">이 세상을 자기가 선택한 것처럼 믿고 살아간다.</p>
+        <p class="world-text">이제,</p>
+        <p class="world-text">너의 선택이 시작된다.</p>
+      </div>
     </div>
 
-    <div class="game-container">
-        
-        <div class="story-area">
-            <div id="choice-container" class="choice-box hidden"></div>
+    <button id="nextBtn" class="next-btn" style="display: none;">
+      Next
+    </button>
+  </main>
 
-            <div class="dialogue-box">
-                <div class="name-tag" id="speaker-name">SYSTEM</div>
-                <div class="text-content" id="story-text">시스템 부팅 중...</div>
-                <div class="click-indicator">▼</div>
-            </div>
-        </div>
+  <!-- 게임 화면 (다음 페이지) -->
+  <main id="gameScreen" class="container" style="display: none;">
+    <!-- TODO: 게임 화면 구성 예정 -->
+  </main>
 
-        <div class="phone-wrapper">
-            <div class="phone-frame">
-                <div class="notch"></div>
-                <div class="status-bar">
-                    <span id="clock">16:00</span>
-                    <span>5G</span>
-                </div>
-                <div class="app-header">PTA Gram</div>
-                
-                <div class="app-content" id="phone-feed">
-                    <div class="feed-intro">
-                        <p>피드를 새로고침 하세요.</p>
-                    </div>
-                </div>
-
-                <div class="app-nav">
-                    <span>🏠</span><span>🔍</span><span>❤️</span><span>👤</span>
-                </div>
-
-                <div id="notification" class="noti-popup hidden">
-                    <span class="noti-icon">P</span>
-                    <div class="noti-body">
-                        <span class="noti-title">PTA Gram</span>
-                        <span id="noti-text">새 알림</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

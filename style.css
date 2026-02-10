@@ -1,104 +1,381 @@
-body {
-    margin: 0; height: 100vh; overflow: hidden;
-    background-color: #050505; color: white;
-    font-family: 'Noto Sans KR', sans-serif;
+/* ---------- Font Face ---------- */
+@font-face {
+    font-family: 'establishRetrosansOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
 }
 
-/* 배경 및 효과 */
-#game-background {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-size: cover; background-position: center;
-    transition: background-image 0.8s ease-in-out;
-    filter: brightness(0.5); z-index: -2;
-}
-.overlay-gradient {
-    position: absolute; width: 100%; height: 100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.2) 100%);
-    z-index: -1; pointer-events: none;
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff2/Pretendard-ExtraBold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/woff/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
 }
 
-/* 부서 배지 */
-.dept-badge {
-    position: absolute; top: 30px; left: 30px;
-    background: #00ff88; color: #000;
-    padding: 10px 20px; font-weight: bold; font-family: 'Orbitron', sans-serif;
-    border-radius: 4px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
-    z-index: 10; font-size: 18px; transition: 0.3s;
+/* ---------- Reset ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ---------- Base ---------- */
+  body {
+    min-height: 100vh;
+    background: #111 url('assets/mainbg.webp') center center / cover no-repeat fixed;
+    color: #fff;
+    font-family: "Noto Sans KR", system-ui, sans-serif;
+  }
+  
+  /* 세계관 설명 화면 배경 */
+  body.world-view {
+    background: #111 url('assets/subbg.webp') center center / cover no-repeat fixed;
+  }
+  
+  /* 게임 화면 배경 */
+  body.game-view {
+    background: #111 url('assets/ad.webp') center center / cover no-repeat fixed;
+  }
+  
+/* ---------- Layout ---------- */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(4rem, 12vh, 8rem);
+}
+  
+  /* 헤더 컨텐츠 */
+  .header-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.5rem, 1.5vh, 1rem);
+    margin-top: clamp(-4rem, -8vh, -2rem);
+  }
+  
+  .main-title {
+    font-family: 'establishRetrosansOTF', sans-serif;
+    font-size: clamp(5rem, 10vw, 9rem);
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0.25rem 2.125rem rgba(255, 248, 211, 0.73);
+    margin: 0;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+  }
+  
+  .sub-title {
+    font-family: 'establishRetrosansOTF', sans-serif;
+    font-size: clamp(3rem, 5vw, 4rem);
+    color: rgba(246, 245, 245, 1);
+    text-shadow: 0 0.25rem 2.125rem rgba(255, 248, 211, 0.73);
+    margin: 0;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+  }
+  
+  /* START 버튼 카드 */
+  .start-card {
+    padding: clamp(0.75rem, 2vw, 1.25rem) clamp(2.5rem, 10vw, 5rem);
+    min-width: clamp(16rem, 30vw, 24rem);
+    background: #646464;
+    backdrop-filter: blur(0.625rem);
+    border-radius: 0.5rem;
+    border: none;
+    text-align: center;
+    text-shadow: 0 0.25rem 2.125rem rgba(255, 248, 211, 0.73);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Pretendard', sans-serif;
+    font-size: clamp(4.1rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .start-card:hover {
+    transform: scale(1.05);
+    background: rgba(174, 174, 174, 0.75);
+    box-shadow: 0 0.75rem 2.5rem rgba(0, 0, 0, 0.4);
+    border: 0.125rem solid #FFFC5E;
+    -webkit-text-stroke: 0.125rem #FFFC5E;
+  }
+  
+  .start-card:active {
+    transform: scale(0.98);
+    background: #FFFC5E;
+  }
+  
+  /* 중앙 카드 (다른 페이지용) */
+  .card {
+    width: 100%;
+    max-width: min(90vw, 50rem);
+    padding: clamp(1.5rem, 5vw, 3rem);
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(0.625rem);
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
+  }
+  
+/* 세계관 설명 화면 컨테이너 */
+.world-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
-/* 레이아웃 */
-.game-container {
-    display: flex; width: 100%; height: 100%;
-    max-width: 1400px; margin: 0 auto; padding: 20px;
-    align-items: center; justify-content: center;
+/* 스크롤 래퍼 - iOS 시간 선택기 스타일 */
+.scroll-wrapper {
+  width: 100%;
+  max-width: min(105vw, 80rem);
+  height: 65vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 글래스모피즘 효과 */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  /* 빛나는 그림자 효과 */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  padding: clamp(2rem, 4vw, 3rem);
+  margin: 0 clamp(1rem, 3vw, 2rem);
 }
 
-/* 왼쪽 스토리 영역 */
-.story-area {
-    flex: 1; margin-right: 50px; display: flex; flex-direction: column;
-    justify-content: flex-end; height: 80%;
+/* 중앙 선택 영역 표시 (선택사항) - 숨김 */
+.scroll-wrapper::before,
+.scroll-wrapper::after {
+  display: none;
 }
-.dialogue-box {
-    background: rgba(20, 20, 25, 0.9); border: 1px solid #444;
-    border-radius: 10px; padding: 30px; min-height: 120px;
-    position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.name-tag {
-    position: absolute; top: -15px; left: 20px;
-    background: #1877F2; padding: 5px 15px; font-weight: bold;
-    border-radius: 20px; font-size: 14px;
-}
-.text-content { font-size: 18px; line-height: 1.6; }
 
-/* 선택지 */
-.choice-box {
-    margin-bottom: 20px; display: flex; flex-direction: column; gap: 10px;
+/* 스크롤 컨텐츠 */
+.scroll-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 50% 0;
 }
-.choice-btn {
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
-    color: white; padding: 15px; text-align: left; cursor: pointer;
-    border-radius: 5px; transition: 0.2s; font-size: 16px;
+
+/* 스크롤바 숨김 */
+.scroll-content::-webkit-scrollbar {
+  display: none;
 }
-.choice-btn:hover { background: #1877F2; border-color: #1877F2; }
 
-/* 오른쪽 스마트폰 */
-.phone-wrapper { width: 360px; height: 720px; flex-shrink: 0; animation: float 6s infinite ease-in-out; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-
-.phone-frame {
-    width: 100%; height: 100%; background: #fff; border-radius: 40px;
-    border: 12px solid #111; overflow: hidden; position: relative;
-    display: flex; flex-direction: column;
+.scroll-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-.status-bar { padding: 10px 20px; color: #000; font-size: 12px; font-weight: bold; display: flex; justify-content: space-between; background: white;}
-.app-header { padding: 15px; color: #000; font-weight: 900; font-size: 20px; border-bottom: 1px solid #eee; background: white; font-family: cursive;}
-.app-content { flex: 1; background: #fafafa; overflow-y: auto; padding: 10px; scrollbar-width: none; }
-.app-nav { height: 50px; border-top: 1px solid #ddd; display: flex; justify-content: space-around; align-items: center; font-size: 24px; color: #000; background: #fff; }
 
-/* 피드 카드 */
-.feed-card {
-    background: white; border-radius: 8px; margin-bottom: 15px; padding-bottom: 10px;
-    border: 1px solid #eee; animation: slideUp 0.5s; color: black;
+/* 세계관 텍스트 - 타임라인 애니메이션 */
+.world-text {
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 1.5rem 0;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.6;
+  font-family: "Noto Sans KR", system-ui, sans-serif;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  position: relative;
+  font-weight: 500;
 }
-.f-header { padding: 10px; display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 14px;}
-.f-avatar { width: 32px; height: 32px; background: #ddd; border-radius: 50%; background-size: cover; }
-.f-img { width: 100%; height: 250px; background: #eee; object-fit: cover; }
-.f-actions { padding: 10px; font-size: 20px; gap: 10px; display: flex; }
-.f-text { padding: 0 10px; font-size: 13px; line-height: 1.4; }
-.f-likes { padding: 0 10px; font-weight: bold; font-size: 13px; margin-bottom: 5px; display: block;}
 
-/* 알림 팝업 */
-.noti-popup {
-    position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
-    width: 90%; background: rgba(255,255,255,0.95); padding: 10px; border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 10px;
-    transition: top 0.4s; color: black; z-index: 100;
+/* 다음 페이지 버튼 */
+.next-btn {
+  margin-top: 2rem;
+  padding: 0.9rem 2.5rem;
+  border-radius: 999px;
+  border: 1px solid #FFFC5E;
+  background: transparent;
+  color: #FFFC5E;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.noti-popup.hidden { top: -80px; }
-.noti-icon { background: linear-gradient(45deg, #f09433, #bc1888); color: white; width: 36px; height: 36px; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-weight: bold; }
-.noti-body { display: flex; flex-direction: column; }
-.noti-title { font-size: 10px; color: #666; }
-#noti-text { font-size: 13px; font-weight: bold; }
 
-.hidden { display: none !important; }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.next-btn:hover {
+  background: #FFFC5E;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
+}
+  
+  /* 세계관 설명 카드 (사용 안 함) */
+  .world-card {
+    width: 100%;
+    max-width: min(90vw, 60rem);
+    padding: clamp(2rem, 6vw, 4rem);
+    background: rgba(26, 26, 26, 0.85);
+    backdrop-filter: blur(0.625rem);
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
+  }
+  
+  .world-content {
+    color: #fff;
+    line-height: 1.8;
+  }
+  
+  /* ---------- Typography ---------- */
+  .title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
+  
+  .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0.8;
+    margin-bottom: 3rem;
+  }
+  
+  .story-text {
+    font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+  
+  /* ---------- Buttons ---------- */
+  .primary-btn {
+    min-width: clamp(12rem, 20vw, 18rem);
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50rem;
+    cursor: pointer;
+    background: #fff;
+    color: #000;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  
+  .primary-btn:hover {
+    transform: scale(1.05);
+    background: #f2f2f2;
+  }
+  
+  /* 선택지 */
+  .choices {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .choice-btn {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #333;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  
+  .choice-btn:hover {
+    background: #333;
+    transform: translateY(-0.125rem);
+  }
+  
+  /* ---------- 반응형 디자인 ---------- */
+  /* 모바일 */
+  @media (max-width: 48rem) {
+    body {
+      background-attachment: scroll;
+    }
+    
+    body.world-view {
+      background-attachment: scroll;
+    }
+    
+    .container {
+      gap: clamp(3rem, 10vh, 5rem);
+    }
+    
+    .start-card {
+      padding: clamp(1.25rem, 4vw, 2rem);
+      margin: 0.625rem;
+    }
+    
+    .card {
+      padding: clamp(1.25rem, 4vw, 2rem);
+      margin: 0.625rem;
+    }
+  }
+  
+  /* 작은 모바일 */
+  @media (max-width: 30rem) {
+    .container {
+      gap: clamp(2.5rem, 8vh, 4rem);
+    }
+    
+    .start-card {
+      padding: 1.5rem 1rem;
+    }
+    
+    .card {
+      padding: 1.5rem 1rem;
+    }
+    
+    .primary-btn {
+      min-width: 100%;
+      padding: 0.9rem 1.5rem;
+      font-size: 1rem;
+    }
+  }
+  
+  /* 태블릿 */
+  @media (min-width: 48.0625rem) and (max-width: 64rem) {
+    .card {
+      max-width: min(85vw, 43.75rem);
+    }
+  }
+  
+  /* 작은 데스크톱 */
+  @media (min-width: 64.0625rem) and (max-width: 80rem) {
+    .card {
+      max-width: min(80vw, 50rem);
+    }
+  }
+  
+  /* 중간 데스크톱 */
+  @media (min-width: 80.0625rem) and (max-width: 100rem) {
+    .card {
+      max-width: min(75vw, 56.25rem);
+    }
+  }
+  
+  /* 큰 데스크톱 */
+  @media (min-width: 100.0625rem) {
+    .card {
+      max-width: min(70vw, 62.5rem);
+    }
+  }
+  
