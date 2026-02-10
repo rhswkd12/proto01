@@ -176,7 +176,8 @@
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 50% 0;
+  padding: clamp(30vh, 40vh, 50vh) 0;
+  box-sizing: border-box;
 }
 
 /* 스크롤바 숨김 */
@@ -376,6 +377,34 @@
   @media (min-width: 100.0625rem) {
     .card {
       max-width: min(70vw, 62.5rem);
+    }
+  }
+  
+  /* 1440px 해상도 최적화 */
+  @media (min-width: 89.5rem) and (max-width: 90.5rem) {
+    .scroll-wrapper {
+      height: min(60vh, 35rem);
+      max-height: 90vh;
+    }
+    
+    .scroll-content {
+      padding: clamp(25vh, 30vh, 35vh) 0;
+    }
+    
+    .world-text {
+      padding: clamp(1rem, 2vh, 1.5rem) 0;
+    }
+  }
+  
+  /* 일반적인 데스크톱 해상도 (1280px ~ 1920px) */
+  @media (min-width: 80rem) and (max-width: 120rem) {
+    .scroll-wrapper {
+      height: min(65vh, 40rem);
+      max-height: 90vh;
+    }
+    
+    .scroll-content {
+      padding: clamp(30vh, 35vh, 40vh) 0;
     }
   }
   
