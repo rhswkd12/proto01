@@ -36,8 +36,130 @@
   }
   
   /* 게임 화면 배경 */
-  body.game-view {
+  /* 스토리 화면 배경 (ad.webp) */
+  body.story-view {
     background: #111 url('assets/ad.webp') center center / cover no-repeat fixed;
+  }
+
+  body.game-view {
+    background: #111;
+  }
+  
+  /* 게임 화면 컨테이너 */
+  .game-container {
+    position: relative;
+    padding-bottom: 0;
+  }
+  
+  /* 게임 화면 2 중앙 이미지 */
+  .center-image {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: min(80vw, 50rem);
+    max-height: min(70vh, 40rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    z-index: 0;
+  }
+  
+  /* 대사창 */
+  .dialogue-box {
+    position: fixed;
+    bottom: clamp(2rem, 5vh, 4rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(95vw, 75rem);
+    max-width: 95%;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    padding-right: clamp(3.5rem, 8vw, 5rem);
+    background: rgba(117, 117, 117, 0.86);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    min-height: clamp(4rem, 10vh, 6rem);
+    max-height: clamp(5rem, 15vh, 8rem);
+    box-sizing: border-box;
+  }
+  
+  .dialogue-text {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    font-family: "Noto Sans KR", system-ui, sans-serif;
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* 다음 대사 버튼 (▼) */
+  .dialogue-next {
+    position: absolute;
+    right: clamp(1rem, 3vw, 2rem);
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(2rem, 4vw, 2.5rem);
+    height: clamp(2rem, 4vw, 2.5rem);
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  
+  .dialogue-next:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .dialogue-next:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+  
+  /* 게임 화면 2 대사창 이미지 */
+  .dialogue-image-wrapper {
+    position: fixed;
+    bottom: clamp(2rem, 5vh, 4rem);
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(95vw, 75rem);
+    max-width: 95%;
+    min-height: clamp(4rem, 10vh, 6rem);
+    max-height: clamp(5rem, 15vh, 8rem);
+  }
+  
+  .dialogue-image {
+    width: 100%;
+    height: auto;
+    min-height: clamp(4rem, 10vh, 6rem);
+    max-height: clamp(5rem, 15vh, 8rem);
+    object-fit: contain;
+    object-position: bottom;
+    display: block;
+  }
+  
+  /* 게임 화면 2 대사 텍스트 (이미지 위에 덮어짐) */
+  .dialogue-text-overlay {
+    position: absolute;
+    top: 72%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - clamp(3rem, 6vw, 4rem));
+    margin: 0;
+    padding: 0 clamp(1.25rem, 3vw, 2rem);
+    color: #fff;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    font-family: "Noto Sans KR", system-ui, sans-serif;
+    text-align: center;
+    z-index: 1;
+    box-sizing: border-box;
   }
   
 /* ---------- Layout ---------- */
@@ -79,6 +201,33 @@
     margin: 0;
     font-weight: normal;
     letter-spacing: 0.05em;
+  }
+  
+  /* 인트로 박스 */
+  .intro-box {
+    width: 100%;
+    max-width: min(95vw, 70rem);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    background: rgba(38, 38, 38, 0.74);
+    border-radius: 1rem;
+  }
+  
+  .intro-text {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    line-height: 1.7;
+    font-family: "Noto Sans KR", system-ui, sans-serif;
+    text-align: center;
+  }
+  
+  .intro-text .intro-bold {
+    font-weight: 700;
+  }
+  
+  /* 메인 화면: 헤더·인트로·Start 간격 축소 */
+  #mainScreen.container {
+    gap: clamp(1.5rem, 4vh, 2.5rem);
   }
   
   /* START 버튼 카드 */
@@ -229,6 +378,37 @@
   transform: translateY(-2px);
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.4);
 }
+
+  /* 스토리 화면 컨테이너 (오른쪽 화살표용) */
+  .story-container {
+    position: relative;
+  }
+
+  /* 오른쪽 화살표 (story → game) */
+  .scene-arrow {
+    position: absolute;
+    right: clamp(1rem, 3vw, 2rem);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .scene-arrow:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.1);
+  }
   
   /* 세계관 설명 카드 (사용 안 함) */
   .world-card {

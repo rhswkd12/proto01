@@ -16,6 +16,14 @@
       <h1 class="main-title">POST-TRUTH</h1>
       <p class="sub-title">ALGORITHM & Co.</p>
     </div>
+
+    <div class="intro-box">
+      <p class="intro-text">
+        <span class="intro-bold">Post-truth : 사실보다는 사람들이 느끼는 감정이나 믿음이 더 중요한 세상</span><br>
+        'Post-truth'시대에 알고리즘은 사람들이 관심 있는 정보만 보여줘 진실과 상관없이 믿고 싶은 내용을 더 많이 보여준다.<br>
+        'Post-Truth Algorithm Company' 줄여서 PTA&Co.는 이런 알고리즘으로 청소년들이 SNS를 떠나지 못하게 만든다.
+      </p>
+    </div>
     
     <button id="startBtn" class="start-card">
       Start
@@ -38,14 +46,32 @@
       </div>
     </div>
 
-    <button id="nextBtn" class="next-btn" style="display: none;">
+    <button id="nextBtn" class="next-btn">
       Next
     </button>
   </main>
 
-  <!-- 게임 화면 (다음 페이지) -->
-  <main id="gameScreen" class="container" style="display: none;">
-    <!-- TODO: 게임 화면 구성 예정 -->
+  <!-- 스토리 화면 (ad.webp 배경) -->
+  <main id="storyScreen" class="container story-container" style="display: none;">
+    <button type="button" id="storyNextArrow" class="scene-arrow" aria-label="다음">&gt;</button>
+    <!-- TODO: 스토리 화면 구성 예정 -->
+  </main>
+
+  <!-- 게임 화면 -->
+  <main id="gameScreen" class="container game-container" style="display: none;">
+    <div class="dialogue-box">
+      <p class="dialogue-text" id="dialogueText">대사가 여기에 표시됩니다.</p>
+      <button type="button" id="dialogueNext" class="dialogue-next" aria-label="다음 대사">▼</button>
+    </div>
+  </main>
+
+  <!-- 게임 화면 2 -->
+  <main id="gameScreen2" class="container game-container" style="display: none;">
+    <img src="assets/alt.png" alt="중앙 이미지" class="center-image">
+    <div class="dialogue-image-wrapper">
+      <img src="assets/Dialogue.webp" alt="대사창" class="dialogue-image">
+      <p class="dialogue-text-overlay" id="dialogueText2">안녕하십니까 사장님. 출근을 하기 위해서는 카드를 찍고 데이터의 엑세스권을 얻어야합니다. 카드를 찍어주십시오.</p>
+    </div>
   </main>
 
   <script src="main.js"></script>
